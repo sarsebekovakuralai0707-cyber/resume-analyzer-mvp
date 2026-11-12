@@ -20,6 +20,8 @@ async function askAI(messages) {
     }
     const data = await response.json();
     return data.choices[0].message.content;
+}
+    return data.choices[0].message.content;
 async function analyzeResume() {
     const resume = document.getElementById("resumeText").value.trim();
     const job = document.getElementById("jobText").value.trim();
@@ -100,6 +102,7 @@ async function sendAnswer() {
     chatBox.innerHTML += `<div id="${loadingId}" class="msg-hr">HR печатает...</div>`;
     try {
         const reply = await askAI(chatHistory);
+        chatHistory.push({ role: "assistant", content: reply });       
         chatHistory.push({ role: "assistant", content: reply });
         document.getElementById(loadingId).remove();
         chatBox.innerHTML += `<div class="msg-hr">HR-менеджер:</div><div>${reply}</div>`;
@@ -107,4 +110,3 @@ async function sendAnswer() {
         document.getElementById(loadingId).innerText = "Ошибка: " + error.message;
     }
 }
-
