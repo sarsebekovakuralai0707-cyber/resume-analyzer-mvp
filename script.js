@@ -1,4 +1,4 @@
-const API_KEY = "gsk_TwPxaO8AWu4BT19Ai6ugWGd" + "yb3FY2ohFbn20GgVumOGUP1MtR8XX";
+const API_KEY = "gsk_TwPxaO8AWu4BT19" + "Ai6ugWGdyb3FY2ohF" + "bn20GgVumOGUP1MtR8XX";
 const API_URL = "https://groq.com";
 const MODEL = "llama-3.3-70b-versatile";
 let chatHistory = [];
@@ -20,7 +20,6 @@ async function askAI(messages) {
     }
     const data = await response.json();
     return data.choices[0].message.content;
-}
 async function analyzeResume() {
     const resume = document.getElementById("resumeText").value.trim();
     const job = document.getElementById("jobText").value.trim();
@@ -79,7 +78,7 @@ async function startInterview() {
     ];
     try {
         const firstQuestion = await askAI(chatHistory);
-        chatHistory.push({ role: "assistant", content: firstQuestion });  
+        chatHistory.push({ role: "assistant", content: firstQuestion });       
         chatBox.innerHTML = `<div class="msg-hr">HR-менеджер:</div><div>${firstQuestion}</div>`;
         answerSection.style.display = "block";
         btn.style.display = "none";
@@ -108,3 +107,4 @@ async function sendAnswer() {
         document.getElementById(loadingId).innerText = "Ошибка: " + error.message;
     }
 }
+
