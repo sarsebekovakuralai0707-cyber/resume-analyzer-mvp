@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Career Coach — Анализатор резюме и интервью</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Career Coach — Анализатор резюме и интервью</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>AI Career Coach 🚀</h1>
-        <p class="subtitle">Подготовь резюме и пройди тренировочное собеседование с ИИ</p>
 
-        <!-- Блок 1: Ввод данных -->
-        <div class="card">
-            <h2>1. Исходные данные</h2>
-            <label>Текст вашего резюме:</label>
-            <textarea id="resumeText" rows="5" placeholder="Вставьте сюда опыт работы, навыки и образование..."></textarea>
+<div class="container">
+  <header>
+    <h1>AI Career Coach 🚀</h1>
+    <p>Подготовь резюме и пройди тренировочное собеседование с ИИ</p>
+  </header>
 
-            <label>Текст желаемой вакансии:</label>
-            <textarea id="jobText" rows="5" placeholder="Вставьте описание вакансии с hh.kz или другого сайта..."></textarea>
+  <!-- Блок 1: Исходные данные -->
+  <div class="card">
+    <h2>1. Исходные данные</h2>
 
-            <button id="analyzeBtn" onclick="analyzeResume()">Проанализировать резюме</button>
-        </div>
+    <label for="apiKey">Groq API Key (сохраняется только в вашем браузере):</label>
+    <input type="password" id="apiKey" placeholder="Вставьте ключ вида gsk_...">
+    <div class="hint">Ключ не хранится в коде на GitHub, поэтому сохранение пройдет без ошибок.</div>
 
-        <!-- Блок 2: Результат анализа -->
-        <div class="card" id="resultCard" style="display: none;">
-            <h2>2. Результат ИИ-аудита</h2>
-            <div id="analysisResult" class="output-box"></div>
-        </div>
+    <label for="resumeText">Текст вашего резюме:</label>
+    <textarea id="resumeText" placeholder="Вставьте опыт работы, навыки, образование..."></textarea>
 
-        <!-- Блок 3: Симулятор собеседования -->
-        <div class="card">
-            <h2>3. Симулятор собеседования</h2>
-            <button id="startInterviewBtn" onclick="startInterview()">Начать интервью по вакансии</button>
-            
-            <div id="chatBox" class="chat-box" style="display: none;"></div>
-            
-            <div id="answerSection" style="display: none; margin-top: 15px;">
-                <textarea id="userAnswer" rows="3" placeholder="Напишите ваш ответ рекрутеру..."></textarea>
-                <button onclick="sendAnswer()">Отправить ответ</button>
-            </div>
-        </div>
+    <label for="jobText">Текст желаемой вакансии:</label>
+    <textarea id="jobText" placeholder="Вставьте описание вакансии и требования..."></textarea>
+
+    <button id="analyzeBtn" onclick="analyzeResume()">Проанализировать резюме</button>
+  </div>
+
+  <!-- Блок 2: Результат ИИ-аудита -->
+  <div class="card">
+    <h2>2. Результат ИИ-аудита</h2>
+    <div id="auditResult" class="result-box">Здесь появится подробный разбор вашего резюме, процент соответствия и советы по улучшению...</div>
+  </div>
+
+  <!-- Блок 3: Симулятор собеседования -->
+  <div class="card">
+    <h2>3. Симулятор собеседования</h2>
+    <button id="startInterviewBtn" onclick="startInterview()">Начать интервью по вакансии</button>
+
+    <div id="chatBox" class="chat-box" style="display: none;"></div>
+
+    <div id="answerControls" style="display: none;">
+      <label for="userAnswer">Ваш ответ рекрутеру:</label>
+      <textarea id="userAnswer" placeholder="Напишите ваш ответ на вопрос..."></textarea>
+      <button id="sendAnswerBtn" onclick="sendAnswer()">Отправить ответ</button>
     </div>
+  </div>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
