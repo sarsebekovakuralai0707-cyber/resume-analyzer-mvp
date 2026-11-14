@@ -1,6 +1,7 @@
-const GROQ_URL = 'https://groq.com';
+const GROQ_URL = 'https://api.groq.com' + '/openai/v1/chat/completions';
 const MODEL = 'llama-3.3-70b-versatile';
 let interviewHistory = [];
+
 window.onload = () => {
   const savedKey = localStorage.getItem('groq_api_key');
   if (savedKey) {
@@ -11,7 +12,7 @@ window.onload = () => {
 function getApiKey() {
   const key = document.getElementById('apiKey').value.trim();
   if (!key) {
-    alert('');
+    alert('Пожалуйста, вставьте ваш Groq API Key!');
     return null;
   }
   localStorage.setItem('groq_api_key', key);
